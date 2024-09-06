@@ -1,0 +1,24 @@
+-- getOrderProductCount - Fetch top ordered products based on VAT (vat_number)
+SELECT 
+  p.product_id, 
+  COUNT(JSON_UNQUOTE(JSON_EXTRACT(o.items, '$[*].product_id'))) AS variant_count, 
+  p.name, 
+  p.price
+FROM db_orders o
+LEFT JOIN db_products p 
+  ON JSON_UNQUOTE(JSON_EXTRACT(o.items, '$[*].product_id')) = p.product_id
+INNER JOIN db_users u 
+  ON o.vat_number = u.vat_number
+WHERE u.vat_number = {{appsmith.store.clientId}}
+GROUP BY p.product_id, p.name, p.price
+ORDER BY variant_count DESC
+LIMIT 5;
+
+
+
+
+
+
+
+
+

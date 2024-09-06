@@ -1,0 +1,11 @@
+-- getCustomerByEmail - Clients
+SELECT 
+  user_id, 
+  first_name, 
+  last_name, 
+  email, 
+  phone, 
+  vat_number
+FROM db_users
+WHERE email = '{{inp_email.text}}';
+

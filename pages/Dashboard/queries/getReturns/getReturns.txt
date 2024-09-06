@@ -1,0 +1,9 @@
+-- getReturns - Fetch orders where delivery_status is 'Returning' or 'Returned'
+SELECT * 
+FROM db_orders 
+WHERE delivery_status IN ('Returning', 'Returned') 
+AND vat_number = {{appsmith.store.clientId}};  -- Use vat_number instead of user_id
+
+
+
+

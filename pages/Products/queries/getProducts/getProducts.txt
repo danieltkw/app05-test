@@ -1,0 +1,19 @@
+-- getProducts - Products
+SELECT 
+  p.product_id AS id,
+  p.name AS name,
+  p.category AS category,
+  p.description AS description,
+  p.warehouse_location AS location,
+  p.price AS price,
+  p.sku AS sku,
+  p.total_stock AS total_stock
+FROM 
+  db_products p
+ORDER BY 
+  p.product_id
+LIMIT {{tbl_products.pageSize}} OFFSET {{(tbl_products.pageNo - 1) * tbl_products.pageSize}};
+
+
+
+

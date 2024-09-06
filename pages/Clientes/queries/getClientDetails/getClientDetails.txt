@@ -1,0 +1,12 @@
+-- getClientDetails - Clients
+SELECT 
+  user_id, 
+  first_name, 
+  last_name, 
+  email, 
+  phone, 
+  vat_number
+FROM db_users
+WHERE user_id = '{{tbl_customers.selectedRow.user_id}}';
+
+

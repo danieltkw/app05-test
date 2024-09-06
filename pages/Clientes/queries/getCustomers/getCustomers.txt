@@ -1,0 +1,17 @@
+SELECT 
+  user_id, 
+  first_name, 
+  last_name, 
+  email, 
+  phone, 
+  CAST(vat_number AS UNSIGNED) AS vat_number
+FROM db_users
+LIMIT {{tbl_customers.pageSize}} OFFSET {{(tbl_customers.pageNo - 1) * tbl_customers.pageSize}};
+
+
+
+
+
+
+
+

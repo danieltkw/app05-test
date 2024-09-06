@@ -1,0 +1,7 @@
+-- getProducts 
+SELECT product_id, name, category, price, total_stock, warehouse_location 
+FROM db_products
+WHERE category = {{appsmith.store.sel_status}} OR {{appsmith.store.sel_status}} = '';
+
+
+

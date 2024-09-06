@@ -1,0 +1,19 @@
+-- getOrders
+SELECT 
+  o.*, 
+  u.vat_number AS client_id,  
+  o.shipping_address, 
+  o.total, 
+  o.delivery_status, 
+  o.created
+FROM db_orders o
+INNER JOIN db_users u ON o.vat_number = u.vat_number
+WHERE u.vat_number = {{appsmith.store.clientId}};
+
+
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+-- getOrders - Returns (need to transform in Products) 
+SELECT * FROM orders WHERE client_id = {{clientId}};
+
