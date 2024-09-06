@@ -2,25 +2,25 @@ export default {
     // Utility function to fetch and store clientId
     async fetchAndSetClientId() {
         try {
-            const result = await getClientIdFromDB.run(); // Replace with the actual query to fetch client ID
+            const result = await getClientIdFromDB.run(); // Fetch client ID from the database
             if (result && result.length > 0) {
                 const clientId = result[0].client_id;
                 storeValue("clientId", clientId);
                 return clientId;
             } else {
-                const defaultClientId = 1; // Set this to the desired default client ID
+                const defaultClientId = 1; // Use this as the default client ID if not found
                 storeValue("clientId", defaultClientId);
                 return defaultClientId;
             }
         } catch (error) {
             console.error('Error fetching client ID:', error);
-            const defaultClientId = 1; // Set this to the desired default client ID
+            const defaultClientId = 1;
             storeValue("clientId", defaultClientId);
             return defaultClientId;
         }
     },
 
-    // Function to get or set default client ID
+    // Function to get or set the client ID
     async getClientId() {
         if (appsmith.store.clientId) {
             return appsmith.store.clientId;
@@ -29,13 +29,27 @@ export default {
         }
     },
 
-    // Function to fetch client details
+    // Function to check if the client is an admin
+    async isAdmin() {
+        const clientId = await this.getClientId();
+        const adminVatNumbers = ['307277003']; // Add other admin VATs if needed
+        return adminVatNumbers.includes(String(clientId));
+    },
+
+    // Function to fetch client details (only if authorized)
     async fetchClientDetails() {
         const clientId = await this.getClientId();
-        const clientDetails = await getClientDetails.run({ clientId });
-        return clientDetails;
+        const isAdmin = await this.isAdmin(); // Check if the user is an admin
+
+        if (isAdmin) {
+            const clientDetails = await getClientDetails.run({ clientId });
+            return clientDetails;
+        } else {
+            showAlert('Unauthorized access', 'error');
+            return [];
+        }
     },
-	
+
     // Converts numeric IDs to a string with leading zeros and 'C' prefix
     idConverter: (num) => {
         if (num === undefined || num === null) {
@@ -47,65 +61,39 @@ export default {
         return 'C' + leadingZeros + str;
     },
 
-			// Fetches customers data
-			getCustomers: async function () {
-			console.clear();
-			let customers;
-			try {
-					// Attempt to fetch data from the database
-					const result = await getCustomers.run();  // Ensure getCustomers is correctly set up in Appsmith
-					customers = result.map(c => {
-							return {
-									ID: this.idConverter(c.user_id),
-									CustomerID: c.user_id,
-									Name: `${c.first_name} ${c.last_name}`,
-									Phone: c.phone,
-									Email: c.email,
-									BillingAddress: c.billing_address || '',  // Fallback to empty string if undefined
-									ShippingAddress: c.shipping_address || '', // Fallback to empty string if undefined
-									vat: Number(c.vat_number) // Ensure vat is treated as a number
-							};
-					});
-			} catch (error) {
-					// If an error occurs, log it and fall back to Test Mode
-					console.error('Error fetching customers from database, falling back to test mode:', error);
-					customers = [
-							{
-									ID: this.idConverter(1),
-									CustomerID: 1,
-									Name: 'John Doe',
-									Phone: '123-456-7890',
-									Email: 'john.doe@example.com',
-									BillingAddress: '123 Main St',
-									ShippingAddress: '123 Main St',
-									vat: 123456789  // Use a number instead of a string
-							},
-							{
-									ID: this.idConverter(2),
-									CustomerID: 2,
-									Name: 'Jane Smith',
-									Phone: '987-654-3210',
-									Email: 'jane.smith@example.com',
-									BillingAddress: '456 Elm St',
-									ShippingAddress: '456 Elm St',
-									vat: 987654321  // Use a number instead of a string
-							}
-					];
-			}
-			return customers;
-	},
-	
-	
+    // Fetch registered clients from the `db_users` table
+    async getCustomers() {
+        console.clear();
+        let customers;
+        try {
+            // Fetch clients from `db_users`
+            const result = await getRegisteredClients.run(); // Fetch all clients from the database
+            customers = result.map(c => {
+                return {
+                    ID: this.idConverter(c.user_id),
+                    CustomerID: c.user_id,
+                    Name: `${c.first_name} ${c.last_name}`,
+                    Phone: c.phone,
+                    Email: c.email,
+                    BillingAddress: c.billing_address || '',  // Fallback to empty string if undefined
+                    ShippingAddress: c.shipping_address || '', // Fallback to empty string if undefined
+                    vat: Number(c.vat_number) // Ensure VAT is treated as a number
+                };
+            });
+        } catch (error) {
+            console.error('Error fetching customers from database:', error);
+            customers = [];
+        }
+        return customers;
+    },
 
     // Fetches customer orders based on selected customer
     async getCustomerOrders() {
-        console.clear();
         let customerOrders;
         try {
-            // Attempt to fetch data from the database
             const selectedRow = tbl_customers.selectedRow;
             if (selectedRow && selectedRow.CustomerID) {
-                const result = await getCustomerOrders.run();  // Ensure getCustomerOrders is properly defined
+                const result = await getCustomerOrders.run({ customerId: selectedRow.CustomerID });
                 customerOrders = result.map(o => {
                     return {
                         OrderId: o.order_id,
@@ -120,24 +108,8 @@ export default {
                 customerOrders = [];
             }
         } catch (error) {
-            // If an error occurs, log it and fall back to Test Mode
-            console.error('Error fetching customer orders from database, falling back to test mode:', error);
-            customerOrders = [
-                {
-                    OrderId: 1,
-                    OrderDate: new Date().toDateString(),
-                    Items: 3,
-                    Amount: '150.00 €',
-                    Status: 'DELIVERED'
-                },
-                {
-                    OrderId: 2,
-                    OrderDate: new Date().toDateString(),
-                    Items: 1,
-                    Amount: '50.00 €',
-                    Status: 'SHIPPED'
-                }
-            ];
+            console.error('Error fetching customer orders from database:', error);
+            customerOrders = [];
         }
         return customerOrders;
     },
@@ -158,24 +130,25 @@ export default {
         }
     },
 
-			// Formats customer data for use in the application
-			formatCustomerData: function (customer) {
-			if (!customer) {
-					console.error('formatCustomerData: customer is undefined');
-					return {};
-			}
-			return {
-					ID: this.idConverter(customer.user_id),
-					CustomerID: customer.user_id,
-					Name: `${customer.first_name} ${customer.last_name}`,
-					Phone: customer.phone,
-					Email: customer.email,
-					BillingAddress: customer.billing_address,
-					ShippingAddress: customer.shipping_address,
-					vat: Number(customer.vat_number) // Ensure vat is treated as a number
-			};
-	}
+    // Formats customer data for use in the application
+    formatCustomerData: function (customer) {
+        if (!customer) {
+            console.error('formatCustomerData: customer is undefined');
+            return {};
+        }
+        return {
+            ID: this.idConverter(customer.user_id),
+            CustomerID: customer.user_id,
+            Name: `${customer.first_name} ${customer.last_name}`,
+            Phone: customer.phone,
+            Email: customer.email,
+            BillingAddress: customer.billing_address,
+            ShippingAddress: customer.shipping_address,
+            vat: Number(customer.vat_number) // Ensure VAT is treated as a number
+        };
+    }
 };
+
 
 
 
