@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 16,
   "boxShadow": "none",
-  "defaultText": "{{ tbl_customers.selectedRow ? String(tbl_customers.selectedRow.Name) : '' }}",
+  "defaultText": "{{ Table1.selectedRow ? `${Table1.selectedRow.first_name} ${Table1.selectedRow.last_name}` : '' }}\n",
   "displayName": "Input",
   "dynamicBindingPathList": [
     {

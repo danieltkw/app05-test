@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_405fe334-8ece-4999-927d-504375569702",
-  "id": "Clientes_utils.isAdmin",
+  "gitSyncId": "66dabe2433a6fc2957006a45_084b4e43-0019-4edd-a45e-aebae57de4ef",
+  "id": "Clientes_utils.populateCustomerOrders",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
-    "fullyQualifiedName": "utils.isAdmin",
-    "name": "isAdmin",
+    "executeOnLoad": false,
+    "fullyQualifiedName": "utils.populateCustomerOrders",
+    "name": "populateCustomerOrders",
     "pageId": "Clientes",
-    "userSetOnLoad": true
+    "userSetOnLoad": false
   }
 }

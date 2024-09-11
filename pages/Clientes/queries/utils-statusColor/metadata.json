@@ -1,12 +1,16 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_405fe334-8ece-4999-927d-504375569702",
-  "id": "Clientes_utils.isAdmin",
+  "gitSyncId": "66dabe2433a6fc2957006a45_656555c8-d054-4e22-bb9e-56f5e5afa9dd",
+  "id": "Clientes_utils.statusColor",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
     "actionConfiguration": {
       "encodeParamsToggle": true,
-      "jsArguments": [],
+      "jsArguments": [
+        {
+          "name": "status"
+        }
+      ],
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
@@ -22,10 +26,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
-    "fullyQualifiedName": "utils.isAdmin",
-    "name": "isAdmin",
+    "executeOnLoad": false,
+    "fullyQualifiedName": "utils.statusColor",
+    "name": "statusColor",
     "pageId": "Clientes",
-    "userSetOnLoad": true
+    "userSetOnLoad": false
   }
 }

@@ -1,12 +1,16 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_405fe334-8ece-4999-927d-504375569702",
-  "id": "Clientes_utils.isAdmin",
+  "gitSyncId": "66dabe2433a6fc2957006a45_3a584ec8-47c5-4784-ae1e-ceb02f4300c6",
+  "id": "Clientes_utils.formatCustomerData",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
     "actionConfiguration": {
       "encodeParamsToggle": true,
-      "jsArguments": [],
+      "jsArguments": [
+        {
+          "name": "customer"
+        }
+      ],
       "paginationType": "NONE",
       "timeoutInMillisecond": 10000
     },
@@ -22,10 +26,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
-    "fullyQualifiedName": "utils.isAdmin",
-    "name": "isAdmin",
+    "executeOnLoad": false,
+    "fullyQualifiedName": "utils.formatCustomerData",
+    "name": "formatCustomerData",
     "pageId": "Clientes",
-    "userSetOnLoad": true
+    "userSetOnLoad": false
   }
 }

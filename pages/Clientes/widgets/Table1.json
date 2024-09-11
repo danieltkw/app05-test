@@ -53,11 +53,7 @@
       "key": "tableData"
     }
   ],
-  "dynamicPropertyPathList": [
-    {
-      "key": "tableData"
-    }
-  ],
+  "dynamicPropertyPathList": [],
   "dynamicTriggerPathList": [],
   "enableClientSideSearch": true,
   "flexVerticalAlignment": "start",

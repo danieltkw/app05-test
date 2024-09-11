@@ -1,45 +1,51 @@
 export default {
-    // Utility function to fetch and store clientId
+    // Fetch and store clientId
     async fetchAndSetClientId() {
         try {
-            const result = await getClientIdFromDB.run(); // Fetch client ID from the database
+            const result = await getClientIdFromDB.run(); // Replace with the actual query to fetch client ID
             if (result && result.length > 0) {
                 const clientId = result[0].client_id;
                 storeValue("clientId", clientId);
                 return clientId;
             } else {
-                const defaultClientId = 1; // Use this as the default client ID if not found
-                storeValue("clientId", defaultClientId);
-                return defaultClientId;
+                throw new Error("Client ID not found in the database."); // Explicit error if no client ID is found
             }
         } catch (error) {
             console.error('Error fetching client ID:', error);
-            const defaultClientId = 1;
-            storeValue("clientId", defaultClientId);
-            return defaultClientId;
+            return null; // Return null in case of error
         }
     },
 
-    // Function to get or set the client ID
+    // Get or set the client ID
     async getClientId() {
         if (appsmith.store.clientId) {
             return appsmith.store.clientId;
         } else {
-            return await this.fetchAndSetClientId();
+            const clientId = await this.fetchAndSetClientId();
+            if (!clientId) {
+                showAlert('Failed to capture client ID. Please try again.', 'error');
+                return null;
+            }
+            return clientId;
         }
     },
 
-    // Function to check if the client is an admin
+    // Check if the client is an admin
     async isAdmin() {
         const clientId = await this.getClientId();
-        const adminVatNumbers = ['307277003']; // Add other admin VATs if needed
+        const adminVatNumbers = ['307277003']; // List of admin VAT numbers
         return adminVatNumbers.includes(String(clientId));
     },
 
-    // Function to fetch client details (only if authorized)
+    // Fetch client details (only if authorized)
     async fetchClientDetails() {
         const clientId = await this.getClientId();
-        const isAdmin = await this.isAdmin(); // Check if the user is an admin
+        if (!clientId) {
+            showAlert('Client ID is not available. Cannot fetch client details.', 'error');
+            return [];
+        }
+
+        const isAdmin = await this.isAdmin();
 
         if (isAdmin) {
             const clientDetails = await getClientDetails.run({ clientId });
@@ -67,7 +73,7 @@ export default {
         let customers;
         try {
             // Fetch clients from `db_users`
-            const result = await getRegisteredClients.run(); // Fetch all clients from the database
+            const result = await getRegisteredClients.run(); // Replace with actual query
             customers = result.map(c => {
                 return {
                     ID: this.idConverter(c.user_id),
@@ -89,22 +95,25 @@ export default {
 
     // Fetches customer orders based on selected customer
     async getCustomerOrders() {
+        console.clear();
         let customerOrders;
         try {
-            const selectedRow = tbl_customers.selectedRow;
-            if (selectedRow && selectedRow.CustomerID) {
-                const result = await getCustomerOrders.run({ customerId: selectedRow.CustomerID });
+            // Get the selected customer from the table (assuming 'tbl_customers' is the customer selection table)
+            const selectedCustomer = tbl_customers.selectedRow;
+            if (selectedCustomer && selectedCustomer.CustomerID) {
+                // Fetch customer orders using the selected CustomerID
+                const result = await getCustomerOrders.run({ customerId: selectedCustomer.CustomerID });
                 customerOrders = result.map(o => {
                     return {
-                        OrderId: o.order_id,
-                        OrderDate: new Date(o.created).toDateString(),
+                        Codigo: o.order_id,
+                        Data: new Date(o.created).toLocaleDateString('pt-PT'),
                         Items: o.items_count,
                         Amount: o.total.toLocaleString('pt-PT', { style: 'currency', currency: 'EUR' }),
                         Status: o.delivery_status
                     };
                 });
             } else {
-                console.error('getCustomerOrders: tbl_customers.selectedRow.CustomerID is undefined');
+                console.error('getCustomerOrders: No customer selected or CustomerID is missing.');
                 customerOrders = [];
             }
         } catch (error) {
@@ -114,7 +123,7 @@ export default {
         return customerOrders;
     },
 
-    // Returns color based on order status
+    // Return status color based on order status
     statusColor: (status) => {
         switch (status) {
             case 'CANCELLED':
@@ -146,11 +155,14 @@ export default {
             ShippingAddress: customer.shipping_address,
             vat: Number(customer.vat_number) // Ensure VAT is treated as a number
         };
+    },
+
+    // Fetch and populate customer orders in tbl_customerOrders
+    async populateCustomerOrders() {
+        const customerOrders = await this.getCustomerOrders();  // Fetch the customer orders
+        tbl_customerOrders.data = customerOrders;               // Bind the data to the table
     }
 };
-
-
-
 
 
 /*

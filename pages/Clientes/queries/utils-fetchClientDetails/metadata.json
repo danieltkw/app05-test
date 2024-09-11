@@ -1,6 +1,6 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_405fe334-8ece-4999-927d-504375569702",
-  "id": "Clientes_utils.isAdmin",
+  "gitSyncId": "66dabe2433a6fc2957006a45_a9c4bb56-a33a-46cc-8cc1-20e0d5fc84b9",
+  "id": "Clientes_utils.fetchClientDetails",
   "pluginId": "js-plugin",
   "pluginType": "JS",
   "unpublishedAction": {
@@ -22,10 +22,10 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
-    "fullyQualifiedName": "utils.isAdmin",
-    "name": "isAdmin",
+    "executeOnLoad": false,
+    "fullyQualifiedName": "utils.fetchClientDetails",
+    "name": "fetchClientDetails",
     "pageId": "Clientes",
-    "userSetOnLoad": true
+    "userSetOnLoad": false
   }
 }
