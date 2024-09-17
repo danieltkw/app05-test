@@ -62,14 +62,8 @@ export default {
         if (appsmith.store.clientId) {
             return appsmith.store.clientId;
         } else {
-            const result = await getClientIdFromDB.run(); // Ensure getClientIdFromDB is your actual query name
-            if (!result || result.length === 0) {
-                console.error('No client ID found in DB');
-                return 'defaultClientId';
-            }
-            const clientId = result[0]?.client_id || 'defaultClientId';
-            await storeValue('clientId', clientId);  // Use storeValue to modify the store
-            return clientId;
+            console.error('Client ID not found in store.');
+            return 'defaultClientId';  // Return a default client ID if none is found
         }
     },
 
@@ -120,13 +114,11 @@ export default {
 };
 
 
-
-
-
 // ------------------------------------------------------------
-// Orders
+// Orders page with Authentication Check
 // ------------------------------------------------------------
 // Daniel T. K. W. - github.com/danieltkw - danielkopolo95@gmail.com
 // ------------------------------------------------------------
+
 
 

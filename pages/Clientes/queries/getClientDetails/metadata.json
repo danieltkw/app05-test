@@ -27,7 +27,7 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": true,
+    "executeOnLoad": false,
     "name": "getClientDetails",
     "pageId": "Clientes",
     "userSetOnLoad": false

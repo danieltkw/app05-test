@@ -53,6 +53,11 @@ export default {
     }
   },
 
+  // Retrieve user ID (VAT) from global store
+  getUserID: function() {
+    return appsmith.store.userID;  // Use this on any page to get the userID
+  },
+
   // Navigate to the external sign-up form
   navigateToSignUpForm() {
     navigateTo(
@@ -63,10 +68,9 @@ export default {
   }
 };
 
+
 // ------------------------------------------------------------
 // Temporary Login page
 // ------------------------------------------------------------
 // Daniel T. K. W. - github.com/danieltkw - danielkopolo95@gmail.com
 // ------------------------------------------------------------
-
-

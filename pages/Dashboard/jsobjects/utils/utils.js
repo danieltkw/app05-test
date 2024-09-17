@@ -127,13 +127,10 @@ export default {
     }
 };
 
-
 // ------------------------------------------------------------
-
 // Dashboard page 
-
 // ------------------------------------------------------------
-// // Daniel T. K. W. - github.com/danieltkw - danielkopolo95@gmail.com
+// Daniel T. K. W. - github.com/danieltkw - danielkopolo95@gmail.com
 // ------------------------------------------------------------
 
 
