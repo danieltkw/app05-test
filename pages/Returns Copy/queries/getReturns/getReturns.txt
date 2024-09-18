@@ -1,3 +1,0 @@
--- getReturns - Returns (need to transform in Products) 
-SELECT * FROM returns WHERE client_id = {{clientId}};
-

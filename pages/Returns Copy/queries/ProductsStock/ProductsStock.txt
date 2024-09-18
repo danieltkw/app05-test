@@ -1,3 +1,0 @@
--- Products and Stock - Returns (need to transform in Products)
-SELECT * FROM db_products;
-

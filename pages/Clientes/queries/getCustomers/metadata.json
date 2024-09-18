@@ -5,7 +5,7 @@
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "SELECT \n  user_id, \n  first_name, \n  last_name, \n  email, \n  phone, \n  CAST(vat_number AS UNSIGNED) AS vat_number\nFROM db_users\nLIMIT {{tbl_customers.pageSize}} OFFSET {{(tbl_customers.pageNo - 1) * tbl_customers.pageSize}};\n\n\n\n\n\n\n\n\n",
+      "body": "-- This query fetches all customers from the `db_users` table.\nSELECT \n  vat_number,        -- VAT number (Tax Identification Number)\n  email,             -- Customer's email\n  first_name,        -- Customer's first name\n  representant,      -- Representative's name\n  phone,             -- Customer's phone number\n  role,              -- User role (admin/client)\n  created_at,        -- Account creation timestamp\n  updated_at         -- Last updated timestamp\nFROM db_users        -- `db_users` is the table where customer data is stored\nWHERE role = 'client';  -- Ensure that only customers (not admin users) are fetched\n\n\n\n\n\n\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -22,11 +22,7 @@
       "name": "appsmith_db",
       "pluginId": "mysql-plugin"
     },
-    "dynamicBindingPathList": [
-      {
-        "key": "body"
-      }
-    ],
+    "dynamicBindingPathList": [],
     "executeOnLoad": true,
     "name": "getCustomers",
     "pageId": "Clientes",

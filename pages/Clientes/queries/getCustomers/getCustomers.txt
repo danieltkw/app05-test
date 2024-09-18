@@ -1,14 +1,15 @@
+-- This query fetches all customers from the `db_users` table.
 SELECT 
-  user_id, 
-  first_name, 
-  last_name, 
-  email, 
-  phone, 
-  CAST(vat_number AS UNSIGNED) AS vat_number
-FROM db_users
-LIMIT {{tbl_customers.pageSize}} OFFSET {{(tbl_customers.pageNo - 1) * tbl_customers.pageSize}};
-
-
+  vat_number,        -- VAT number (Tax Identification Number)
+  email,             -- Customer's email
+  first_name,        -- Customer's first name
+  representant,      -- Representative's name
+  phone,             -- Customer's phone number
+  role,              -- User role (admin/client)
+  created_at,        -- Account creation timestamp
+  updated_at         -- Last updated timestamp
+FROM db_users        -- `db_users` is the table where customer data is stored
+WHERE role = 'client';  -- Ensure that only customers (not admin users) are fetched
 
 
 

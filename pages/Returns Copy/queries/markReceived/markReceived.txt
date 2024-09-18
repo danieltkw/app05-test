@@ -1,2 +1,0 @@
--- markReceived - Returns (need to transform in Products) 
-UPDATE returns SET status = 'Received' WHERE id = {{selectedRow.Id}};

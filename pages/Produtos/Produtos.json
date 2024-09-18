@@ -1,12 +1,12 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_6d21658b-bd5b-4461-bdc1-3a493e5c77a0",
+  "gitSyncId": "66dabe2433a6fc2957006a45_0024d165-c4c6-46a4-ac9e-8289f54026cb",
   "unpublishedPage": {
-    "isHidden": true,
+    "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 810,
+          "bottomRow": 870,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
@@ -26,7 +26,7 @@
         }
       }
     ],
-    "name": "Clientes",
-    "slug": "clientes"
+    "name": "Produtos",
+    "slug": "produtos"
   }
 }

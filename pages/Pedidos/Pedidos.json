@@ -1,12 +1,12 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_6d21658b-bd5b-4461-bdc1-3a493e5c77a0",
+  "gitSyncId": "66dabe2433a6fc2957006a45_624a0569-7b74-40cb-b742-4b6cb5aa8027",
   "unpublishedPage": {
-    "isHidden": true,
+    "isHidden": false,
     "layouts": [
       {
         "dsl": {
           "backgroundColor": "none",
-          "bottomRow": 810,
+          "bottomRow": 800,
           "canExtend": true,
           "containerStyle": "none",
           "detachFromLayout": true,
@@ -26,7 +26,7 @@
         }
       }
     ],
-    "name": "Clientes",
-    "slug": "clientes"
+    "name": "Pedidos",
+    "slug": "pedidos"
   }
 }

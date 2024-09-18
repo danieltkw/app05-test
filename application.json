@@ -35,11 +35,7 @@
       "isDefault": false
     },
     {
-      "id": "Products",
-      "isDefault": false
-    },
-    {
-      "id": "Returns Copy",
+      "id": "Produtos",
       "isDefault": false
     },
     {
@@ -47,7 +43,7 @@
       "isDefault": false
     },
     {
-      "id": "Returns",
+      "id": "Pedidos",
       "isDefault": false
     },
     {
