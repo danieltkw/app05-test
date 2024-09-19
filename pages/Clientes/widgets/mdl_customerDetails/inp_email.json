@@ -5,7 +5,7 @@
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
   "bottomRow": 23,
   "boxShadow": "none",
-  "defaultText": "{{ Table1.selectedRow ? String(Table1.selectedRow.Email || '') : '' }}\n\n",
+  "defaultText": "{{ Table1.selectedRow ? Table1.selectedRow.email : '' }}\n\n",
   "displayName": "Input",
   "dynamicBindingPathList": [
     {
@@ -47,7 +47,7 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 29,
+  "rightColumn": 35,
   "searchTags": [
     "form",
     "text input",

@@ -3,9 +3,9 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 19,
+  "bottomRow": 43,
   "boxShadow": "none",
-  "defaultText": "{{ Table1.selectedRow ? String(Table1.selectedRow.BillingAddress || '') : '' }}\n\n\n",
+  "defaultText": "{{ Table1.selectedRow ? String(Table1.selectedRow.standard_address || '') : '' }}\n\n\n\n",
   "displayName": "Input",
   "dynamicBindingPathList": [
     {
@@ -37,7 +37,7 @@
   "labelTextColor": "#52525b",
   "labelTextSize": "1rem",
   "labelWidth": "10",
-  "leftColumn": 31,
+  "leftColumn": 1,
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
   "minWidth": 450,
@@ -47,7 +47,7 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 61,
+  "rightColumn": 52,
   "searchTags": [
     "form",
     "text input",
@@ -55,7 +55,7 @@
     "textarea"
   ],
   "showStepArrows": false,
-  "topRow": 9,
+  "topRow": 33,
   "type": "INPUT_WIDGET_V2",
   "version": 2,
   "widgetId": "x32clyxkoq",

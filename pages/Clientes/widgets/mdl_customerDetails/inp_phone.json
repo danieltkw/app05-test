@@ -8,7 +8,7 @@
   "bottomRow": 33,
   "boxShadow": "none",
   "defaultDialCode": "+351",
-  "defaultText": "{{ Table1.selectedRow ? Table1.selectedRow.Phone : '' }}\n",
+  "defaultText": "{{ Table1.selectedRow ? Table1.selectedRow.phone : '' }}\n",
   "displayName": "Phone Input",
   "dynamicBindingPathList": [
     {
@@ -48,7 +48,7 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 29,
+  "rightColumn": 36,
   "searchTags": [
     "call"
   ],

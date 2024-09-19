@@ -1,11 +1,11 @@
 {
-  "gitSyncId": "66dabe2433a6fc2957006a45_0e25acef-d3a5-405a-81be-158a2403920c",
-  "id": "Clientes_getClientIdFromDB",
+  "gitSyncId": "66dabe2433a6fc2957006a45_5ce7e725-b91d-46ac-b6c2-fae72b41845d",
+  "id": "Clientes_getCustomerOrdersQuery",
   "pluginId": "mysql-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
     "actionConfiguration": {
-      "body": "-- getClientIdFromDB - Clients\nSELECT client_id FROM db_users WHERE email = '{{appsmith.user.email}}';\n\n",
+      "body": "SELECT \n  o.order_id, \n  o.created, \n  JSON_LENGTH(o.items) AS items_count, \n  o.total\nFROM db_orders o\nWHERE o.vat_number = {{vat_number}};  -- Use the VAT number to find the orders\n\n\n",
       "encodeParamsToggle": true,
       "paginationType": "NONE",
       "pluginSpecifiedTemplates": [
@@ -27,8 +27,8 @@
         "key": "body"
       }
     ],
-    "executeOnLoad": false,
-    "name": "getClientIdFromDB",
+    "executeOnLoad": true,
+    "name": "getCustomerOrdersQuery",
     "pageId": "Clientes",
     "userSetOnLoad": false
   }

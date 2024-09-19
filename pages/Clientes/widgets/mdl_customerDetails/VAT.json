@@ -3,9 +3,9 @@
   "animateLoading": true,
   "autoFocus": false,
   "borderRadius": "{{appsmith.theme.borderRadius.appBorderRadius}}",
-  "bottomRow": 39,
+  "bottomRow": 50,
   "boxShadow": "none",
-  "defaultText": "{{ Table1.selectedRow ? Number(Table1.selectedRow.vat || 0) : 0 }}\n\n\n",
+  "defaultText": "{{ Table1.selectedRow ? Table1.selectedRow.vat_number : '' }}\n\n\n\n",
   "displayName": "Input",
   "dynamicBindingPathList": [
     {
@@ -39,7 +39,7 @@
   "labelStyle": "",
   "labelTextSize": "0.875rem",
   "labelWidth": 5,
-  "leftColumn": 31,
+  "leftColumn": 21,
   "maxChars": "9",
   "maxDynamicHeight": 9000,
   "minDynamicHeight": 4,
@@ -63,7 +63,7 @@
   "renderMode": "CANVAS",
   "resetOnSubmit": true,
   "responsiveBehavior": "fill",
-  "rightColumn": 61,
+  "rightColumn": 52,
   "searchTags": [
     "form",
     "text input",
@@ -77,7 +77,7 @@
     "Inputs"
   ],
   "thumbnailSVG": "https://appcdn.appsmith.com/static/media/thumbnail.a4eac1a16753ea7fc54cac7731f9ea6a.svg",
-  "topRow": 32,
+  "topRow": 43,
   "type": "INPUT_WIDGET_V2",
   "validation": "{{ VAT.text && VAT.text.length === 9 && !isNaN(Number(VAT.text)) ? VAT.text : '' }}\n\n",
   "version": 2,

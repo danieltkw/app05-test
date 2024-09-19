@@ -49,6 +49,10 @@
     {
       "id": "Authentication",
       "isDefault": true
+    },
+    {
+      "id": "Produtos Copy",
+      "isDefault": false
     }
   ],
   "unpublishedAppLayout": {

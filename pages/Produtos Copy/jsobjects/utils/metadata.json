@@ -1,0 +1,16 @@
+{
+  "gitSyncId": "66dabe2433a6fc2957006a45_b906e965-74d0-413d-b489-ad864dedcb4e",
+  "id": "Produtos Copy_utils",
+  "unpublishedCollection": {
+    "name": "utils",
+    "pageId": "Produtos Copy",
+    "pluginId": "js-plugin",
+    "pluginType": "JS",
+    "variables": [
+      {
+        "name": "isTestMode",
+        "value": "false"
+      }
+    ]
+  }
+}
