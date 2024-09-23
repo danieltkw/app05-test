@@ -1,9 +1,9 @@
 {
   "gitSyncId": "66dabe2433a6fc2957006a45_b906e965-74d0-413d-b489-ad864dedcb4e",
-  "id": "Produtos Copy_utils",
+  "id": "Compras_utils",
   "unpublishedCollection": {
     "name": "utils",
-    "pageId": "Produtos Copy",
+    "pageId": "Compras",
     "pluginId": "js-plugin",
     "pluginType": "JS",
     "variables": [

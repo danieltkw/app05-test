@@ -1,6 +1,6 @@
 {
   "gitSyncId": "66dabe2433a6fc2957006a45_b71f70cc-c569-4f39-9c45-558fffecce26",
-  "id": "Produtos Copy_getProducts",
+  "id": "Compras_getProducts",
   "pluginId": "mysql-plugin",
   "pluginType": "DB",
   "unpublishedAction": {
@@ -29,7 +29,7 @@
     ],
     "executeOnLoad": false,
     "name": "getProducts",
-    "pageId": "Produtos Copy",
+    "pageId": "Compras",
     "userSetOnLoad": false
   }
 }
